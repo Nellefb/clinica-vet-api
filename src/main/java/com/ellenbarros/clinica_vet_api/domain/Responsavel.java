@@ -1,9 +1,14 @@
 package com.ellenbarros.clinica_vet_api.domain;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
+@Document(collection = "responsavel")
 public class Responsavel {
 
+    @Id
     private String id;
     private String nome;
     private String email;
