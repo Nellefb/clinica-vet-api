@@ -5,6 +5,7 @@ import com.ellenbarros.clinica_vet_api.dto.ResponsavelDTO;
 import com.ellenbarros.clinica_vet_api.services.ResponsavelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,5 +25,11 @@ public class ResponsavelResource {
         List<Responsavel> list = service.findAll();
         List<ResponsavelDTO> listDto = list.stream().map(x -> new ResponsavelDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ResponsavelDTO> findById(@PathVariable String id) {
+        Responsavel obj = service.findById(id);
+        return ResponseEntity.ok().body(new ResponsavelDTO(obj));
     }
 }
